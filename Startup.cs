@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+// Add librarycontext and intializer
+using NETD_Lab52.Data;
+// Add EF core
+using Microsoft.EntityFrameworkCore;
 
 namespace NETD_Lab52
 {
@@ -23,6 +27,11 @@ namespace NETD_Lab52
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Adding connection
+         
+            services.AddDbContext<LibraryContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));            
+
             services.AddControllersWithViews();
         }
 
